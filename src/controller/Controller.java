@@ -20,7 +20,7 @@ public class Controller implements Initializable{
         controllerSerialControlPanel = ControllerSerialControlPanel.Instance;
         controllerPeopleDisplay = ControllerPeopleDisplay.Instance;
 
-        Sensor s1 = new Sensor();
+        //Sensor s1 = new Sensor();
 
         controllerPeopleDisplay.draw();
     }

@@ -3,7 +3,9 @@ package controller;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.chart.LineChart;
+import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
+import javafx.scene.control.Label;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -15,6 +17,7 @@ public class ControllerPeopleDisplay implements Initializable {
     public static ControllerPeopleDisplay Instance;
 
     @FXML LineChart lineChart;
+    @FXML Label labelPeopleNumber;
 
     public ControllerPeopleDisplay(){
         Instance = this;
@@ -25,8 +28,11 @@ public class ControllerPeopleDisplay implements Initializable {
     }
 
     public void draw(){
-        lineChart.getData().add(new XYChart.Data(5,6));
-        lineChart.getData().add(new XYChart.Data(7,9));
-        lineChart.getData().add(new XYChart.Data(8,11));
+        XYChart.Series series = new XYChart.Series<Number, Number>();
+
+        series.getData().add(new XYChart.Data(7,9));
+        series.getData().add(new XYChart.Data(8,11));
+        lineChart.getData().add(series);
+        labelPeopleNumber.setText("test");
     }
 }
