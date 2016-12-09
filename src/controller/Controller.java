@@ -22,11 +22,6 @@ public class Controller implements Initializable{
 
         Sensor s1 = new Sensor();
 
-        Main.stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
-            @Override
-            public void handle(WindowEvent event) {
-                
-            }
-        });
+        controllerPeopleDisplay.draw();
     }
 }
