@@ -9,9 +9,10 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
-public class Main extends Application {
+import java.util.ArrayList;
+import java.util.List;
 
-    public static Stage stage;
+public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
@@ -21,10 +22,24 @@ public class Main extends Application {
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
 
-        stage = primaryStage;
+        primaryStage.setOnCloseRequest(event -> onClose());
+
     }
 
     public static void main(String[] args) {
         launch(args);
     }
+
+    public void onClose(){
+        for (Runnable r : runList) {
+            r.run();
+        }
+    }
+
+    private static ArrayList<Runnable> runList = new ArrayList();
+
+    public static void addRunnable(Runnable runnable){
+        runList.add(runnable);
+    }
+
 }

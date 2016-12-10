@@ -11,9 +11,9 @@
             <Insets top="5.0" />
          </HBox.margin>
       </Label>
-      <ChoiceBox prefWidth="150.0" />
-      <Button mnemonicParsing="false" text="Connect" />
-      <Button mnemonicParsing="false" text="Disconnect" />
-      <Button mnemonicParsing="false" text="Refresh" />
+      <ChoiceBox fx:id="choiceBoxPortsList" prefWidth="150.0" />
+      <Button mnemonicParsing="false" text="Connect" onAction="#onConnectClick" />
+      <Button mnemonicParsing="false" text="Disconnect" onAction="#onDisconnectClick"/>
+      <Button mnemonicParsing="false" text="Refresh" onAction="#onRefreshClick" />
    </children>
 </HBox>

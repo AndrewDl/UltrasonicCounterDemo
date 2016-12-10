@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.chart.*?>
@@ -7,12 +8,12 @@
 
 <VBox prefHeight="400.0" prefWidth="800.0" spacing="10.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ControllerPeopleDisplay">
    <children>
-      <LineChart fx:id="lineChart" prefHeight="337.0" prefWidth="780.0">
+      <LineChart fx:id="lineChart" animated="false" legendVisible="false" prefHeight="337.0" prefWidth="780.0" title="Diagram">
          <xAxis>
-            <CategoryAxis label="time" side="BOTTOM" />
+            <CategoryAxis animated="false" label="time" />
          </xAxis>
          <yAxis>
-            <NumberAxis label="cm" side="LEFT" upperBound="500.0" />
+            <NumberAxis animated="false" autoRanging="false" label="cm" minorTickCount="3" side="LEFT" tickUnit="20.0" upperBound="300.0" />
          </yAxis>
       </LineChart>
       <HBox spacing="10.0">
