@@ -83,4 +83,8 @@ public class ControllerPeopleDisplay implements Initializable {
         lineChart.getData().add(series);
     }
 
+    public void setCount(int count){
+        labelPeopleNumber.setText(Integer.toString(count));
+    }
+
 }
