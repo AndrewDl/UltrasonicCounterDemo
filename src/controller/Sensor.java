@@ -59,7 +59,7 @@ public class Sensor implements SerialPortEventListener{
                 int dat = (buffer[3]&0xFF) | ((buffer[2]&0xFF)<<8);
                 //System.out.println(dat);
                 fireDataAvailableEvent(dat);
-                System.out.println(dat + " : " + (((int)buffer[3]) & 0xFF ));
+                //System.out.println(dat + " : " + (((int)buffer[3]) & 0xFF ));
 
             }
             catch (SerialPortException ex) {

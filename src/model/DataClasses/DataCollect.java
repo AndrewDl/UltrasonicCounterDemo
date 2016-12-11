@@ -1,11 +1,16 @@
-package controller;
+package model.DataClasses;
 
+import model.ParametersClasses.Parameters;
+
+import java.lang.reflect.Parameter;
 import java.util.ArrayList;
 
 /**
  * Created by Andrew on 10.12.2016.
  */
-public class CollectedData {
+public class DataCollect {
+
+    Parameters parameters = Parameters.getInstance();
 
     public interface ICountChangeHandler{
         void handle();
@@ -40,14 +45,14 @@ public class CollectedData {
             h.handle();
     }
 
-    private int Size = 100;
-
     private int[] sensorData;
     private int sensorDataIndex = 0;
 
     private int lastCountPointer;
-    private int Count = 0;
-    private int CountOld = 0;
+    private double Count = 0;
+    private double CountOld = 0;
+    private double CountDifference = 0;
+    private double remainder = 0;
 
     boolean newZone = true;
 
@@ -55,10 +60,10 @@ public class CollectedData {
      * Об'єкт збору даних
      * @param size розмір масиву даних, що аналізуватиметься
      */
-    public CollectedData(int size){
-        Size = size;
+    public DataCollect(int size){
+        int size1 = size;
 
-        sensorData = new int[Size];
+        sensorData = new int[size1];
         lastCountPointer = sensorData.length;
 
     }
@@ -77,17 +82,17 @@ public class CollectedData {
 
         if (lastCountPointer == 0){
             int[] array = getDataFocusNew();
-            int acceptLevel = 40;
+            //int acceptLevel = 40;
             int pulseWidth = 0;
-            int pulseThreshold = 1;
+            //int pulseThreshold = 1;
 
             for (int i = 0; i < array.length ; i++) {
 
-                if (array[i] <= acceptLevel) {
+                if (array[i] <= parameters.getAcceptLevel()) {
 
                     pulseWidth++;
 
-                    if ((newZone == true)&&(pulseWidth > pulseThreshold)) {
+                    if ((newZone == true)&&(pulseWidth > parameters.getPulseWidthThreshold())) {
                         Count++;
                         newZone = false;
                     }
@@ -103,6 +108,17 @@ public class CollectedData {
 
 
         if (Count>CountOld){
+
+            CountDifference = Count-CountOld;
+
+            int result = (int)(CountDifference/2 + remainder);
+            remainder = (CountDifference/2) + remainder - (int)(CountDifference/2);
+
+            if (remainder == 1) remainder = 0;
+
+            CountDifference = result;
+
+            CountOld = Count;
             fireOnCountEvent();
         }
 
@@ -118,7 +134,13 @@ public class CollectedData {
      * @return
      */
     public int getCount(){
-        return Count;
+        return (int)(Count/2);
+    }
+
+
+    public int getCountDifference(){
+
+        return (int)CountDifference;
     }
 
 

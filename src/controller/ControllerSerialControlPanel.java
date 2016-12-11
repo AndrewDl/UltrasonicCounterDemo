@@ -73,8 +73,10 @@ public class ControllerSerialControlPanel implements Initializable {
     private void StartConnection() {
         try {
             //Открываем порт
-            serialPort = new SerialPort(choiceBoxPortsList.getValue().toString());
-            serialPort.openPort();
+            if (serialPort==null) {
+                serialPort = new SerialPort(choiceBoxPortsList.getValue().toString());
+                serialPort.openPort();
+            }
             //Выставляем параметры
             //serialPort.setParams(SerialPort.BAUDRATE_9600,
             //        SerialPort.DATABITS_8,
